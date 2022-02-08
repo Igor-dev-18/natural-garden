@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;;;;;AAGA;EACI;EACA;EACA;EACA;AADJ,C","sources":["webpack://natural-garden/./src/sass/main.scss"],"sourcesContent":["@import './colors.scss';\r\n@import './typography.scss';\r\n\r\n*{\r\n    margin: 0;\r\n    padding:0;\r\n    outline: none;\r\n    box-sizing: border-box;\r\n}"],"names":[],"sourceRoot":""}
