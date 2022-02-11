@@ -1,9 +1,390 @@
 @import './colors.scss';
 @import './typography.scss';
 
-*{
+/* RESET */
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     outline: none;
     box-sizing: border-box;
+}
+
+/* GENERAL */
+body {
+    background-color: $white-color;
+    color: $black-color;
+    font-family: $serif-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+form,
+input,
+span,
+time {
+    font-family: $sans-serif-font;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+p {
+    line-height: 150%;
+}
+
+@mixin flex {
+    display: flex;
+    @content;
+}
+
+@mixin grid {
+    display: grid;
+    @content;
+}
+
+@mixin simpleTransition($properties: all, $duration: 285ms, $curve: ease, $delay: 0) {
+    transition: $properties $duration $curve $delay;
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 16px;
+
+    @media (min-width: 900px) {
+        margin: 0 auto;
+    }
+}
+
+
+
+.btn-group {
+    @include flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.btn {
+    padding: 12px;
+    border: 1px solid $primary-02;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &--large {
+        @include generateFontSize(md);
+    }
+
+    &--small {
+        @include generateFontSize(sm);
+    }
+
+    &--primary {
+        background-color: $primary-02;
+        color: $white-color;
+
+        &:hover {
+            background-color: $primary-03;
+            border: $primary-03;
+        }
+    }
+
+    &--secondary {
+        background: transparent;
+        color: $primary-02;
+
+        &:hover {
+            background-color: $primary-03;
+            border: $primary-03;
+            color: $white-color;
+        }
+    }
+
+    &--section {
+        display: block;
+        margin: 48px auto 0;
+        width: 160px;
+        @include generateFontSize(sm);
+
+    }
+
+}
+
+section {
+
+    padding: 32px 0;
+
+
+    .section-title,
+    .section-paragraph {
+        text-align: center;
+
+    }
+
+    .section-title {
+        @include generateFontSize(xxl);
+        color: $primary-02;
+        margin-bottom: 20px;
+
+    }
+
+    .section-paragraph {
+        @include generateFontSize(sm);
+        text-align: center;
+        color: $black-color;
+        margin-bottom: 12px;
+    }
+
+}
+
+// HERO
+.header {
+    background-color: $light-green;
+    padding: 16px 0;
+    position: relative;
+
+    @media (min-width:992px) {
+        padding: 24px 0;
+
+    }
+
+    .navbar {
+        @include flex {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-family: $cursive-font;
+            @include generateFontSize(xl);
+            color: $primary-02;
+        }
+
+        .header-toggle-menu {
+            display: none;
+
+            @media (max-width: 992px) {
+                display: block;
+                width: 42px;
+                cursor: pointer;
+
+                .bar {
+                    height: 4px;
+                    background-color: $primary-02;
+                    margin: 4px;
+                }
+            }
+        }
+
+        .header-menu {
+            background-color: $light-green;
+
+            @include flex {
+                gap: 24px;
+                align-items: center;
+            }
+
+            @media (max-width: 992px) {
+                max-height: 0;
+                overflow: hidden;
+                height: calc(100vh - 66px);
+                flex-direction: column;
+                justify-content: center;
+                position: absolute;
+                z-index: 999;
+                top: 66px;
+                left: 0;
+                width: 100%;
+            }
+
+            .menu__link {
+                color: $primary-02;
+                @include generateFontSize(sm);
+                @include simpleTransition();
+
+                &:hover {
+                    opacity: 0.7;
+                }
+
+
+                @media (max-width: 992px) {
+                    text-align: center;
+                    text-transform: uppercase;
+                    padding: 8px 0;
+                    font-weight: bold;
+                }
+            }
+
+        }
+    }
+
+}
+
+// HERO
+.hero {
+    background-color: $light-green;
+    padding: 32px 0;
+
+    .hero__content {
+        @include flex {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero__text {
+            text-align: center;
+
+            .hero__title {
+                margin-bottom: 12px;
+            }
+
+            .hero__paragraph {
+                margin-bottom: 24px;
+            }
+
+        }
+
+        .hero__image {
+            width: 200px;
+        }
+    }
+}
+
+// STEPS
+.steps {
+
+    .steps__content {
+        @include grid {
+            gap: 24px;
+        }
+
+        .step-card {
+            text-align: center;
+            margin-bottom: 24px;
+
+            &__title {
+                font-family: $cursive-font;
+                letter-spacing: 2px;
+                @include generateFontSize(xxl);
+
+                &--big {
+                    @include generateFontSize(xxxl);
+                }
+            }
+
+            &__img {
+                height: 85px;
+                width: 85px;
+                margin: 24px 0;
+
+            }
+
+            &__text {
+                @include generateFontSize(sm);
+                line-height: 150%;
+            }
+        }
+    }
+}
+
+.emphasis__content {
+    @include grid {
+        gap: 16px;
+    }
+
+    ;
+
+    .emphasis-card {
+
+        .emphasis-link {
+            color: $black-color;
+
+            @include flex {
+                gap: 16px;
+            }
+
+            .emphasis-card__img {
+                border-radius: 8px;
+                height: 147px;
+                width: 94px;
+            }
+
+            .emphasis-card__content {
+                @include flex {
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                .description {
+                    h3 {
+                        color: $primary-02;
+                        margin-bottom: 4px;
+                        @include generateFontSize(md);
+                    }
+
+                    p {
+                        font-family: $serif-font;
+                        @include generateFontSize(sm);
+                        margin-bottom: 4px;
+                    }
+                }
+
+                .info {
+                    h4 {
+                        color: $primary-02;
+                        margin-bottom: 8px;
+                        @include generateFontSize(md);
+                    }
+
+                    p {
+                        @include generateFontSize(xs);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.articles{
+    background-color: $gray-color;
+
+    &__content{
+        @include grid{
+            gap: 16px;
+        }
+        .article-card{
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.25);
+            background: $white-color;
+
+            .article__link{
+
+                .article__img{
+                    border-radius: 8px 8px 0 0;
+                    height: 124px;
+                }
+                .article__content{
+                    padding: 8px;
+                }
+            }
+        }
+    }
 }
