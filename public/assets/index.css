@@ -79,6 +79,7 @@ p {
   border: 1px solid #274029;
   border-radius: 6px;
   text-align: center;
+  transition: all 275ms ease-in-out;
   cursor: pointer;
 }
 @media (min-width: 992px) {
@@ -162,11 +163,18 @@ section .section-paragraph {
   font-size: 0.79em;
   text-align: center;
   color: #434A47;
+  margin: 0 auto;
   margin-bottom: 12px;
+  max-width: 800px;
 }
 @media (min-width: 900px) {
   section .section-paragraph {
     font-size: 1em;
+  }
+}
+@media (min-width: 992px) {
+  section .section-paragraph {
+    margin-bottom: 48px;
   }
 }
 
@@ -207,8 +215,19 @@ section .section-paragraph {
   }
   .header .navbar .header-toggle-menu .bar {
     height: 4px;
+    border-radius: 2px;
     background-color: #274029;
     margin: 4px;
+    transition: all 275ms ease;
+  }
+  .header .navbar .header-toggle-menu.active .bar:nth-of-type(1) {
+    transform: rotate(45deg) translate(8px, 4px);
+  }
+  .header .navbar .header-toggle-menu.active .bar:nth-of-type(2) {
+    opacity: 0;
+  }
+  .header .navbar .header-toggle-menu.active .bar:nth-of-type(3) {
+    transform: rotate(-45deg) translate(8px, -4px);
   }
 }
 .header .navbar .header-menu {
@@ -219,9 +238,9 @@ section .section-paragraph {
 }
 @media (max-width: 992px) {
   .header .navbar .header-menu {
-    max-height: 0;
+    gap: 0;
+    height: 0;
     overflow: hidden;
-    height: calc(100vh - 66px);
     flex-direction: column;
     justify-content: center;
     position: absolute;
@@ -229,26 +248,38 @@ section .section-paragraph {
     top: 66px;
     left: 0;
     width: 100%;
+    opacity: 0;
+    transition: all 0.9s ease;
+  }
+  .header .navbar .header-menu.active {
+    opacity: 1;
+    overflow: auto;
+    min-height: calc(100vh - 66px);
   }
 }
-.header .navbar .header-menu .menu__link {
+@media (max-width: 992px) {
+  .header .navbar .header-menu .menu__item {
+    margin: 12px;
+  }
+}
+.header .navbar .header-menu .menu__item .menu__link {
   color: #274029;
   font-size: 0.79em;
   transition: all 285ms ease 0;
 }
 @media (min-width: 900px) {
-  .header .navbar .header-menu .menu__link {
+  .header .navbar .header-menu .menu__item .menu__link {
     font-size: 1em;
   }
 }
-.header .navbar .header-menu .menu__link:hover {
+.header .navbar .header-menu .menu__item .menu__link:hover {
   opacity: 0.7;
 }
 @media (max-width: 992px) {
-  .header .navbar .header-menu .menu__link {
+  .header .navbar .header-menu .menu__item .menu__link {
     text-align: center;
     text-transform: uppercase;
-    padding: 8px 0;
+    padding: 12px 0;
     font-weight: bold;
   }
 }
@@ -380,7 +411,8 @@ section .section-paragraph {
 @media (min-width: 992px) {
   .emphasis__content {
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    row-gap: 62px;
+    column-gap: 42px;
   }
 }
 @media (min-width: 768px) {
@@ -545,12 +577,14 @@ section .section-paragraph {
   color: #274029;
   border-radius: 4px;
   padding: 16px 12px;
+  transition: all 975ms ease;
 }
 .faqs__content .faq.active {
   background-color: #274029;
   color: #FFF;
 }
 .faqs__content .faq__header {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -565,6 +599,7 @@ section .section-paragraph {
 }
 .faqs__content .faq__header .faq__icon {
   font-size: 1.602em;
+  transition: all 285ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @media (min-width: 900px) {
   .faqs__content .faq__header .faq__icon {
@@ -574,9 +609,17 @@ section .section-paragraph {
 .faqs__content .faq__body {
   max-height: 0;
   overflow: hidden;
+  opacity: 0;
+  transition: all 875ms ease;
 }
 .faqs__content .faq__body .faq__answer {
   margin-top: 12px;
+}
+.faqs__content .faq.active .faq__header .faq__icon {
+  transform: rotate(180deg);
+}
+.faqs__content .faq.active .faq__body {
+  opacity: 1;
 }
 
 .newsletter {
@@ -711,6 +754,20 @@ section .section-paragraph {
   .footer__copy .text {
     font-size: 0.889em;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #F7F7F7;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #274029;
+  border-radius: 30px;
 }
 
 /*# sourceMappingURL=index.css.map*/
